@@ -25,27 +25,6 @@ import cn.bmob.v3.listener.SaveListener;
  */
 public class LoginActivity extends AppCompatActivity {
     EditText phone, password;
-    static String QUESTION="Question";
-    static String OPTION_A="OptionA";
-    static String OPTION_B="OptionB";
-    static String OPTION_C="OptionC";
-    static String OPTION_D="OptionD";
-    static String ANSWER="Answer";
-    static String EXPLAIN="Explains";
-    private LinearLayout exercise;
-    public Handler handler=new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what){
-                case 1:
-                    Toast.makeText(LoginActivity.this, "数据库创建完成", Toast.LENGTH_SHORT).show();
-                    break;
-            }
-        }
-    };
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,12 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         phone = (EditText) findViewById(R.id.phone);
         password = (EditText) findViewById(R.id.password);
-        findViewById(R.id.add_data_button).setOnClickListener(new OnClickListener(){
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
         findViewById(R.id.to_register_button).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,13 +84,14 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                Log.i("login", "btnLogin  else  ");
+                Log.i("login", "登陆成功");
                 Toast.makeText(getApplicationContext(), "登陆成功", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onFailure(int code, String msg) {
+                Log.i("login", "登陆失败" + msg + "错误码" + code);
                 Toast.makeText(getApplicationContext(), "登陆失败" + msg + "错误码" + code, Toast.LENGTH_SHORT).show();
             }
         });

@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.company.question.questionapplication.R;
+import com.company.question.questionapplication.bmob.LoginActivity;
+import com.company.question.questionapplication.bmob.ResetPasswordActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;

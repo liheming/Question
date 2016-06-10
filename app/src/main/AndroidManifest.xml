@@ -30,11 +30,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.LoginActivity"></activity>
-        <activity android:name=".Activity.RegisterActivity"></activity>
-        <activity android:name=".Activity.ResetPasswordActivity"></activity>
         <activity android:name=".Activity.ExerciseActivity"
             android:label="什么什么题"/>
+        <activity android:name=".bmob.LoginActivity"></activity>
+        <activity android:name=".bmob.ResetPasswordActivity"></activity>
+        <activity android:name=".bmob.RegisterActivity"></activity>
     </application>
 
 </manifest>
