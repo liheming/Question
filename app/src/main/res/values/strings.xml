@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">QuestionApplication</string>
+    <string name="mainActivityTitle">什么什么什么题库</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="prompt_phone">手机号(大陆11位号码)</string>
+    <string name="prompt_password">密码(不少于6位)(测试:123456)</string>
+    <string name="prompt_password_twice">请再次输入密码!</string>
+    <string name="action_sign_in">登录</string>
+    <string name="action_to_register">前往注册</string>
+    <string name="action_submit_register">注册</string>
+    <string name="tip_register">没有账户?去注册一个吧!</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_password">密码长度不小于6位</string>
+    <string name="error_incorrect_password">密码格式不正确</string>
+    <string name="error_field_required">必填项</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="section_format">世界你好 from section: %1$d</string>
+    <string name="input_username_tip">请输入用户名,不输入默认为手机号!</string>
+    <string name="input_indentity">请输入手机的验证码</string>
+    <string name="get_identity">获取验证码</string>
+    <string name="action_settings">设置</string>
+    <string-array name="QuestionInfo">
+        <item>Question</item>//0
+        <item>OptionA</item>//1
+        <item>OptionB</item>//2
+        <item>OptionC</item>//3
+        <item>OptionD</item>//4
+        <item>Answer</item>//5
+        <item>Explains</item>//6
+    </string-array>
+
+
+
+</resources>

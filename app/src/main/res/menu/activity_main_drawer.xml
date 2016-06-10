@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_update"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="更新软件" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="关于软件" />
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/action_sign_in" />
+        <item
+            android:id="@+id/nav_login_out"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="退出登录" />
+    </group>
+
+    <item android:title="分享">
+        <menu>
+            <item
+                android:id="@+id/nav_reset_pass"
+                android:icon="@drawable/ic_menu_share"
+                android:title="重置密码" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="占个位置" />
+        </menu>
+    </item>
+
+</menu>
