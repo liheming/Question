@@ -1,6 +1,6 @@
 package com.company.question.questionapplication.Db;
 
-import android.app.Application;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

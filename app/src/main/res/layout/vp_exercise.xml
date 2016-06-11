@@ -22,31 +22,32 @@
             android:text="1、我是题目，我是题目，我是题目，我是题目，我是题目，我是题目"/>
     </LinearLayout>
     <RadioGroup
+        android:id="@+id/optionGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RadioButton
             android:id="@+id/optionA"
             android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="我是选项A"/>
         <RadioButton
             android:id="@+id/optionB"
             android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="我是选项B"/>
         <RadioButton
             android:id="@+id/optionC"
             android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="我是选项C"/>
         <RadioButton
             android:id="@+id/optionD"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="我是选项D"/>
     </RadioGroup>

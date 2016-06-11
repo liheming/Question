@@ -22,21 +22,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:text="解析"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-        <Button
+            android:id="@+id/bt_answer"
             android:text="查看答案"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
         <Button
+            android:id="@+id/bt_collect"
             android:text="收藏"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
         <Button
+            android:id="@+id/bt_finish"
             android:text="交卷"
             android:layout_weight="1"
             android:layout_width="0dp"
