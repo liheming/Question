@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.company.question.questionapplication.Db.ExerciseDatabaseDao;
 import com.company.question.questionapplication.R;
 import com.company.question.questionapplication.bmob.LoginActivity;
 import com.company.question.questionapplication.bmob.ResetPasswordActivity;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     private String DB_PATH;
     private String DB_NAME;
     private TextView username_app_bar,username_nav_head;
+    private LinearLayout myError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,16 +80,32 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         exercise = (LinearLayout) findViewById(R.id.exercise);
-        exercise.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ExerciseActivity.class));
-            }
-        });
+        myError = (LinearLayout) findViewById(R.id.myError);
+
         //拷贝数据库
         DB_PATH = "/data/data/" + getPackageName() + "/databases/";
         DB_NAME = "test.db";
         copyDB();
+
+
+        exercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this, ExerciseActivity.class);
+                intent.putExtra("tableName","MyQuestion");
+                startActivity(intent);
+            }
+        });
+        myError.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ErrorListActivity.class));
+            }
+        });
+
+        ExerciseDatabaseDao dao=new ExerciseDatabaseDao(this);
+        dao.createErrorTable();
+        dao.createCollectTable();
 
     }
 

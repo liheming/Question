@@ -25,10 +25,10 @@ public class QuestionFragment extends android.support.v4.app.Fragment{
     private Bundle args;
     Context context;
     private RadioGroup optionGroup;
-    private RadioGroup optionGroup1;
     private int answer;
     private Intent intent;
     private int position;
+    private String answerOption;
 
     public void setArguments(Bundle args,Context context) {
         super.setArguments(args);
@@ -54,14 +54,28 @@ public class QuestionFragment extends android.support.v4.app.Fragment{
         optionC = (RadioButton) questionView.findViewById(R.id.optionC);
         optionD = (RadioButton) questionView.findViewById(R.id.optionD);
         explain = (TextView) questionView.findViewById(R.id.explain);
-        optionGroup1 = (RadioGroup) questionView.findViewById(R.id.optionGroup);
-        question.setText(args.getString(questionInfo[0]));
+        optionGroup = (RadioGroup) questionView.findViewById(R.id.optionGroup);
+        question.setText(position+"·"+args.getString(questionInfo[0]));
         optionA.setText(args.getString(questionInfo[1]));
         optionB.setText(args.getString(questionInfo[2]));
         optionC.setText(args.getString(questionInfo[3]));
         optionD.setText(args.getString(questionInfo[4]));
-        explain.setText(args.getString(questionInfo[6]));
         answer = args.getInt(questionInfo[5]);
+        switch (answer){
+            case 1:
+                answerOption = "A";
+                break;
+            case 2:
+                answerOption="B";
+                break;
+            case 3:
+                answerOption="C";
+                break;
+            case 4:
+                answerOption="D";
+                break;
+        }
+        explain.setText("答案是："+answerOption+"\n"+args.getString(questionInfo[6]));
         optionGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
