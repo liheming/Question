@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity
         //提供以下两种方式进行初始化操作：
 
         //第一：默认初始化
-        Bmob.initialize(this, "1fe47f6bb8ec6a3eb640c3617952b5a6");
+        Bmob.initialize(this, "e2a04b48f22c7fe93ea7a8fb6b294cfc");
 
         //第二：自v3.4.7版本开始,设置BmobConfig,允许设置请求超时时间、文件分片上传时每片的大小、文件的过期时间(单位为秒)，
         //BmobConfig config =new BmobConfig.Builder(this)

@@ -21,7 +21,9 @@
             android:textSize="20sp"
             android:text="1、我是题目，我是题目，我是题目，我是题目，我是题目，我是题目"/>
     </LinearLayout>
+
     <RadioGroup
+
         android:orientation="vertical"
         android:id="@+id/optionGroup"
         android:layout_width="match_parent"

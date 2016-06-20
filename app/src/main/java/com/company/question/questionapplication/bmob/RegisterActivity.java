@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
         getIdentity_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BmobSMS.requestSMSCode(RegisterActivity.this, phone_editText.getText().toString(), "mode1", new RequestSMSCodeListener() {
+                BmobSMS.requestSMSCode(RegisterActivity.this, phone_editText.getText().toString(), "demo", new RequestSMSCodeListener() {
 
                     @Override
                     public void done(Integer integer, BmobException e) {
