@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.company.question.questionapplication.Bean.ChoiceInfo;
+import com.company.question.questionapplication.Bean.CollectListInfo;
 import com.company.question.questionapplication.Bean.ErrorListInfo;
 import com.company.question.questionapplication.Bean.QuestionInfo;
 import com.company.question.questionapplication.Bean.SubmitErrorInfo;
@@ -132,6 +133,68 @@ public class ExerciseDatabaseDao {
                 "Answer integer,Explains varchar(20))");
         closeDb(db);
     }
+    public boolean addCollect(ContentValues values){
+        SQLiteDatabase db = openDb();
+        long result = db.insert("Collect", null, values);
+        if (result!=-1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public List<CollectListInfo> getCollectListInfos(){
+        SQLiteDatabase db=openDb();
+        List<CollectListInfo> CollectInfoList=new ArrayList<CollectListInfo>();
+        Cursor cursor = db.query("Collect", null, null, null, null, null, null);
+        CollectListInfo info;
+        while(cursor.moveToNext()){
+            info=new CollectListInfo();
+            int id = cursor.getInt(cursor.getColumnIndex("_id"));
+            String question = cursor.getString(cursor.getColumnIndex("Question"));
+            int answer = cursor.getInt(cursor.getColumnIndex("Answer"));
+            String answerString=null;
+            switch (answer){
+                case 1:
+                    answerString= cursor.getString(cursor.getColumnIndex("OptionA"));
+                    break;
+                case 2:
+                    answerString=cursor.getString(cursor.getColumnIndex("OptionB"));
+                    break;
+                case 3:
+                    answerString=cursor.getString(cursor.getColumnIndex("OptionC"));
+                    break;
+                case 4:
+                    answerString=cursor.getString(cursor.getColumnIndex("OptionD"));
+                    break;
+            }
+            info.setPosition(id);
+            info.setQuestion(question);
+            info.setAnswer(answerString);
+            CollectInfoList.add(info);
+        }
+        return CollectInfoList;
+    }
+    public boolean deleteAllCollect(){
+        SQLiteDatabase db = openDb();
+        //清空表数据
+        db.execSQL("DELETE FROM Collect");
+        //清空自增
+        db.execSQL("UPDATE sqlite_sequence SET seq = 0 WHERE name='Collect';");
+        return true;
+    }
+    public boolean deleteCollect(int id){
+        SQLiteDatabase db = openDb();
+        int delete = db.delete("Collect", "_id=?", new String[]{
+                id + ""
+        });
+        if (delete!=-1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public void createErrorTable(){
         SQLiteDatabase db = openDb();
         db.execSQL("create table if not exists Error(_id integer primary key autoincrement,position integer,fromTable varchar(20)," +

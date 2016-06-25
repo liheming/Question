@@ -1,6 +1,7 @@
 package com.company.question.questionapplication.Activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class ErrorListActivity extends AppCompatActivity {
     private ErrorListAdapter adapter;
     private int positionId;
     private Button deleteAll;
+    private TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +41,21 @@ public class ErrorListActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
         error_size = (TextView) findViewById(R.id.error_size);
         deleteAll = (Button) findViewById(R.id.deleteAll);
+        title = (TextView) findViewById(R.id.list_title);
+        title.setText("我的错题");
+        deleteAll.setText("清空错题");
         dao = new ExerciseDatabaseDao(this);
         list = dao.getErrorListInfos();
         adapter = new ErrorListAdapter(ErrorListActivity.this, list);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(ErrorListActivity.this,ErrorActivity.class);
+                intent.putExtra("position",position);
+                startActivity(intent);
+            }
+        });
         updateSize();
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override

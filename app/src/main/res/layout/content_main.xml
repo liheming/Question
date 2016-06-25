@@ -54,6 +54,7 @@
                     android:text="我的错题"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/myCollect"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"

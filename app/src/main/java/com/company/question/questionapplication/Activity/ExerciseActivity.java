@@ -3,6 +3,7 @@ package com.company.question.questionapplication.Activity;
 
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -54,7 +55,8 @@ public class ExerciseActivity extends AppCompatActivity {
 //    private int moveState;
     private Button bt_answer;
     private AlertDialog alertDialog;
-//    Handler handler=new Handler(){
+    private Button bt_collect;
+    //    Handler handler=new Handler(){
 //        @Override
 //        public void handleMessage(Message msg) {
 //            switch (msg.what){
@@ -83,6 +85,8 @@ public class ExerciseActivity extends AppCompatActivity {
             }
         });
         bt_answer = (Button) findViewById(R.id.bt_answer);
+        bt_collect = (Button) findViewById(R.id.bt_collect);
+
         database = new ExerciseDatabaseDao(this);
         //要获取那一套题
         questionInfoList = database.getQuestionList("MyQuestion");
@@ -183,6 +187,37 @@ public class ExerciseActivity extends AppCompatActivity {
         intentFilter.addAction("com.question.choice");
         intentFilter.addAction("com.question.submit");
         registerReceiver(choiceReceiver,intentFilter);
+
+        bt_collect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int currentItem = viewPager.getCurrentItem();
+                QuestionInfo info = questionInfoList.get(currentItem);
+                String question = info.getQuestion();
+                String optionA = info.getOptionA();
+                String optionB = info.getOptionB();
+                String optionC = info.getOptionC();
+                String optionD = info.getOptionD();
+                String explain = info.getExplain();
+                int answer = info.getAnswer();
+                ContentValues values=new ContentValues();
+                values.put("position",currentItem);
+                values.put("fromTable",TableName);
+                values.put("Question",question);
+                values.put("OptionA",optionA);
+                values.put("OptionB",optionB);
+                values.put("OptionC",optionC);
+                values.put("OptionD",optionD);
+                values.put("Answer",answer);
+                values.put("Explains",explain);
+                boolean b = database.addCollect(values);
+                if (b){
+                    Toast.makeText(ExerciseActivity.this, "收藏成功", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(ExerciseActivity.this, "收藏失败", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
 

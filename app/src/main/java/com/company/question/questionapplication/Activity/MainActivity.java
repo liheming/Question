@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity
     private String DB_NAME;
     private TextView username_app_bar,username_nav_head;
     private LinearLayout myError;
+    private LinearLayout myCollect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity
 
         exercise = (LinearLayout) findViewById(R.id.exercise);
         myError = (LinearLayout) findViewById(R.id.myError);
+        myCollect = (LinearLayout) findViewById(R.id.myCollect);
 
         //拷贝数据库
         DB_PATH = "/data/data/" + getPackageName() + "/databases/";
@@ -102,6 +104,13 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(MainActivity.this,ErrorListActivity.class));
             }
         });
+        myCollect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,CollectListActivity.class));
+            }
+        });
+
 
         ExerciseDatabaseDao dao=new ExerciseDatabaseDao(this);
         dao.createErrorTable();

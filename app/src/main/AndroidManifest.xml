@@ -37,8 +37,14 @@
         <activity android:name=".bmob.LoginActivity" />
         <activity android:name=".bmob.ResetPasswordActivity" />
         <activity android:name=".bmob.RegisterActivity" />
-        <activity android:name=".Activity.ErrorListActivity"
-            android:label=""></activity>
+        <activity
+            android:name=".Activity.ErrorListActivity"
+            android:label="" />
+        <activity
+            android:name=".Activity.CollectListActivity"
+            android:label="" />
+        <activity android:name=".Activity.ErrorActivity"
+            android:label="我的错题"></activity>
     </application>
 
 </manifest>

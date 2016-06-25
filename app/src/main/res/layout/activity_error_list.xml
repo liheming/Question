@@ -13,6 +13,7 @@
         android:background="@color/colorPrimary"
         >
         <TextView
+            android:id="@+id/list_title"
             android:text="我的错题"
             android:textSize="18sp"
             android:textColor="@color/white"
