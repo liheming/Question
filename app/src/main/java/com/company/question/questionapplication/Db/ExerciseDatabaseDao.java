@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.company.question.questionapplication.Bean.ChoiceInfo;
+import com.company.question.questionapplication.Bean.CollectInfo;
 import com.company.question.questionapplication.Bean.CollectListInfo;
 import com.company.question.questionapplication.Bean.ErrorListInfo;
 import com.company.question.questionapplication.Bean.QuestionInfo;
@@ -22,8 +23,11 @@ public class ExerciseDatabaseDao {
 
     String TABLE_NAME="MyQuestion";
     Context context;
+    private String[] questionInfo;
+
     public ExerciseDatabaseDao(Context context) {
         this.context=context;
+        questionInfo = context.getResources().getStringArray(R.array.QuestionInfo);
     }
     public SQLiteDatabase openDb(){
         SQLiteDatabase db;
@@ -38,7 +42,7 @@ public class ExerciseDatabaseDao {
         SQLiteDatabase db=openDb();
         List<QuestionInfo> questionInfoList=new ArrayList<QuestionInfo>();
         Cursor cursor = db.query(tableName, null, null, null, null, null, null);
-        String[] questionInfo=context.getResources().getStringArray(R.array.QuestionInfo);
+
         for (int i = 0; i < cursor.getCount(); i++) {
             cursor.moveToPosition(i);
             QuestionInfo info=new QuestionInfo();
@@ -65,7 +69,7 @@ public class ExerciseDatabaseDao {
         SQLiteDatabase db=openDb();
         List<SubmitErrorInfo> questionInfoList=new ArrayList<SubmitErrorInfo>();
         Cursor cursor = db.query("Error", null, null, null, null, null, null);
-        String[] questionInfo=context.getResources().getStringArray(R.array.QuestionInfo);
+
         for (int i = 0; i < cursor.getCount(); i++) {
             cursor.moveToPosition(i);
             SubmitErrorInfo info=new SubmitErrorInfo();
@@ -78,6 +82,7 @@ public class ExerciseDatabaseDao {
             String explain = cursor.getString(cursor.getColumnIndex(questionInfo[6]));
             int position = cursor.getInt(cursor.getColumnIndex("position"));
             int Checked = cursor.getInt(cursor.getColumnIndex("Checked"));
+            String fromTable=cursor.getString(cursor.getColumnIndex("fromTable"));
             info.setQuestion(question);
             info.setOptionA(optionA);
             info.setOptionB(optionB);
@@ -87,6 +92,7 @@ public class ExerciseDatabaseDao {
             info.setExplain(explain);
             info.setPosition(position);
             info.setChecked(Checked);
+            info.setFromTable(fromTable);
             questionInfoList.add(info);
         }
         closeDb(db);
@@ -188,11 +194,39 @@ public class ExerciseDatabaseDao {
         int delete = db.delete("Collect", "_id=?", new String[]{
                 id + ""
         });
+        db.close();
         if (delete!=-1){
             return true;
         }else{
             return false;
         }
+    }
+
+    public List<CollectInfo> getCollectlist(){
+        List<CollectInfo> list=new ArrayList<CollectInfo>();
+        SQLiteDatabase db = openDb();
+        Cursor cursor = db.query("Collect", null, null, null, null, null, null);
+        while (cursor.moveToNext()){
+            CollectInfo info=new CollectInfo();
+            String question = cursor.getString(cursor.getColumnIndex(questionInfo[0]));
+            String optionA = cursor.getString(cursor.getColumnIndex(questionInfo[1]));
+            String optionB = cursor.getString(cursor.getColumnIndex(questionInfo[2]));
+            String optionC = cursor.getString(cursor.getColumnIndex(questionInfo[3]));
+            String optionD = cursor.getString(cursor.getColumnIndex(questionInfo[4]));
+            int answer = cursor.getInt(cursor.getColumnIndex(questionInfo[5]));
+            String explain = cursor.getString(cursor.getColumnIndex(questionInfo[6]));
+            String fromTable=cursor.getString(cursor.getColumnIndex("fromTable"));
+            info.setQuestion(question);
+            info.setOptionA(optionA);
+            info.setOptionB(optionB);
+            info.setOptionC(optionC);
+            info.setOptionD(optionD);
+            info.setAnswer(answer);
+            info.setExplain(explain);
+            info.setFromTable(fromTable);
+            list.add(info);
+        }
+        return list;
     }
 
     public void createErrorTable(){

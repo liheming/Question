@@ -7,28 +7,28 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
 
-import com.company.question.questionapplication.Bean.QuestionInfo;
+import com.company.question.questionapplication.Bean.CollectInfo;
 import com.company.question.questionapplication.Bean.SubmitErrorInfo;
+import com.company.question.questionapplication.Fragment.CollectFragment;
 import com.company.question.questionapplication.Fragment.ErrorFragment;
-import com.company.question.questionapplication.Fragment.QuestionFragment;
 import com.company.question.questionapplication.R;
 
 import java.util.HashMap;
 import java.util.List;
 
 
-public class Vp_adapter_error extends FragmentStatePagerAdapter {
+public class Vp_adapter_collect extends FragmentStatePagerAdapter {
 
 
     Context context;
     HashMap<Integer,Fragment> fragmentHashMap;
 
-    static List<SubmitErrorInfo> errorInfoList;
+    static List<CollectInfo> collectInfoList;
     private final String[] questionInfo;
 
-    public Vp_adapter_error(FragmentManager fm, List<SubmitErrorInfo> submitErrorInfoList, Context context) {
+    public Vp_adapter_collect(FragmentManager fm, List<CollectInfo> collectInfoList, Context context) {
         super(fm);
-        this.errorInfoList=submitErrorInfoList;
+        this.collectInfoList=collectInfoList;
         this.context=context;
         questionInfo = this.context.getResources().getStringArray(R.array.QuestionInfo);
         fragmentHashMap=new HashMap<Integer, Fragment>();
@@ -36,18 +36,17 @@ public class Vp_adapter_error extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        ErrorFragment fragment=new ErrorFragment();
+        CollectFragment fragment=new CollectFragment();
         Bundle bundle=new Bundle();
         bundle.putInt("position",position);
-        bundle.putString(questionInfo[0],errorInfoList.get(position).getQuestion());
-        bundle.putString(questionInfo[1],errorInfoList.get(position).getOptionA());
-        bundle.putString(questionInfo[2],errorInfoList.get(position).getOptionB());
-        bundle.putString(questionInfo[3],errorInfoList.get(position).getOptionC());
-        bundle.putString(questionInfo[4],errorInfoList.get(position).getOptionD());
-        bundle.putInt(questionInfo[5],errorInfoList.get(position).getAnswer());
-        bundle.putString(questionInfo[6],errorInfoList.get(position).getExplain());
-        bundle.putInt("choice",errorInfoList.get(position).getChecked());
-        bundle.putString("fromTable",errorInfoList.get(position).getFromTable());
+        bundle.putString(questionInfo[0],collectInfoList.get(position).getQuestion());
+        bundle.putString(questionInfo[1],collectInfoList.get(position).getOptionA());
+        bundle.putString(questionInfo[2],collectInfoList.get(position).getOptionB());
+        bundle.putString(questionInfo[3],collectInfoList.get(position).getOptionC());
+        bundle.putString(questionInfo[4],collectInfoList.get(position).getOptionD());
+        bundle.putInt(questionInfo[5],collectInfoList.get(position).getAnswer());
+        bundle.putString(questionInfo[6],collectInfoList.get(position).getExplain());
+        bundle.putString("fromTable",collectInfoList.get(position).getFromTable());
         fragment.setArguments(bundle,context);
         fragmentHashMap.put(position,fragment);
         return fragment;
@@ -61,7 +60,7 @@ public class Vp_adapter_error extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return errorInfoList.size();
+        return collectInfoList.size();
     }
 
     public Fragment getFragment(int position){
@@ -69,6 +68,6 @@ public class Vp_adapter_error extends FragmentStatePagerAdapter {
     }
 
     public int getAnswer(int position){
-        return errorInfoList.get(position).getAnswer();
+        return collectInfoList.get(position).getAnswer();
     }
 }

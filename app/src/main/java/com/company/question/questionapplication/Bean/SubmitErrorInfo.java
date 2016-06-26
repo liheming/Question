@@ -13,6 +13,15 @@ public class SubmitErrorInfo {
     private String optionD;
     private int answer;
     private String explain;
+    private String fromTable;
+
+    public String getFromTable() {
+        return fromTable;
+    }
+
+    public void setFromTable(String fromTable) {
+        this.fromTable = fromTable;
+    }
 
     public int getPosition() {
         return position;

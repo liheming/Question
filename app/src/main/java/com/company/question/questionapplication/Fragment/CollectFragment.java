@@ -1,7 +1,6 @@
 package com.company.question.questionapplication.Fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,7 +14,7 @@ import android.widget.TextView;
 import com.company.question.questionapplication.R;
 
 
-public class ErrorFragment extends Fragment {
+public class CollectFragment extends Fragment {
     private View questionView;
     private TextView question;
     private RadioButton optionA;
@@ -30,7 +29,6 @@ public class ErrorFragment extends Fragment {
     private int position;
     private String answerOption;
     private String choiceOption;
-    private TextView error_choice;
     private int choice;
     private String fromTable;
     private TextView tv_fromTable;
@@ -51,7 +49,7 @@ public class ErrorFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         String[] questionInfo=context.getResources().getStringArray(R.array.QuestionInfo);
-        questionView = inflater.inflate(R.layout.vp_error,container,false);
+        questionView = inflater.inflate(R.layout.vp_collect,container,false);
         question = (TextView) questionView.findViewById(R.id.question);
         optionGroup = (RadioGroup) questionView.findViewById(R.id.optionGroup);
         optionA = (RadioButton) questionView.findViewById(R.id.optionA);
@@ -59,7 +57,7 @@ public class ErrorFragment extends Fragment {
         optionC = (RadioButton) questionView.findViewById(R.id.optionC);
         optionD = (RadioButton) questionView.findViewById(R.id.optionD);
         explain = (TextView) questionView.findViewById(R.id.explain);
-        error_choice = (TextView) questionView.findViewById(R.id.error_choice);
+
         optionGroup = (RadioGroup) questionView.findViewById(R.id.optionGroup);
         tv_fromTable = (TextView) questionView.findViewById(R.id.tv_fromTable);
         question.setText(position+". "+args.getString(questionInfo[0]));
@@ -69,22 +67,6 @@ public class ErrorFragment extends Fragment {
         optionD.setText(args.getString(questionInfo[4]));
         fromTable = args.getString("fromTable");
         tv_fromTable.setText("来自："+fromTable);
-        choice=args.getInt("choice");
-        switch (choice){
-            case 1:
-                choiceOption="A";
-                break;
-            case 2:
-                choiceOption="B";
-                break;
-            case 3:
-                choiceOption="C";
-                break;
-            case 4:
-                choiceOption="D";
-                break;
-        }
-        error_choice.setText("以往错选："+choiceOption);
         answer = args.getInt(questionInfo[5]);
         switch (answer){
             case 1:
@@ -104,7 +86,6 @@ public class ErrorFragment extends Fragment {
         optionGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                error_choice.setVisibility(View.VISIBLE);
                 explain.setVisibility(View.VISIBLE);
             }
         });

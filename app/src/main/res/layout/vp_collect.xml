@@ -70,13 +70,5 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:text="解析、解析、解析、解析、解析、解析、解析、解析、解析"/>
-    <TextView
-        android:layout_marginTop="20dp"
-        android:id="@+id/error_choice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="以往错选：A"
-        android:textSize="18sp"
-        android:textColor="#fc7151"
-        android:visibility="invisible"/>
 </LinearLayout>
+
